@@ -1,4 +1,4 @@
-def second_task():
+'''def second_task():
     my_list = [{'name': 'Oleg', 'age': 23}, {'name': 'Vasya', 'age': 19}]
     return sorted(my_list, key=lambda x: x['age'])
 
@@ -31,4 +31,19 @@ def sixth_task():
 
 
 print(sixth_task())
+'''
 
+
+from bs4 import BeautifulSoup as bs
+import requests
+
+def get_leaderboard_honor():
+    new_r = requests.get('https://www.codewars.com/users/leaderboard')
+    new_soup = bs(new_r.content, 'html.parser')
+    mass = []
+    for i in new_soup.select('table tr'):
+        mass.append(i.find("td", attrs={'class': "honor"}))
+    return [int(i.text.replace(',', '')) for i in mass[1:]]
+
+
+print(get_leaderboard_honor())
