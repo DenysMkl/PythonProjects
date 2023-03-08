@@ -27,7 +27,6 @@ df = pd.DataFrame(x_traine, columns=['Голова', 'Вуха', 'Ніс', 'Оч
 
 
 df['Class'] = pd.Series(y_traine)
-
 df.index = [i for i in range(1, len(y_traine)+1)]
 df = df[df['Очі'].apply(lambda x: x == 1)] # менять 1 и 0 в х и менять ветку df['']
 
